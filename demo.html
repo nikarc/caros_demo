@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="CarOS">
+<head>
+  <meta charset="UTF-8">
+  <title>CarOS Demo</title>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="static/styles/demo.css">
+</head>
+<body>
+  <div id="screen" ng-controller="MainController">
+    <div id="window-menu-bar">
+      <button id="close"></button>
+      <button id="minimize"></button>
+      <button id="maximize"></button>
+    </div>
+    <section class="main" id="main-menu" ng-controller="MainMenu">
+    <div class="clock" ng-cloak><h1>{{time}}</h1><p>{{ date }}</p></div>
+    <div id="main-menu-buttons">
+      <div class="menu-button waves-effect" ng-click="navigate('music'); windowStack.push('music')"><p>Music</p></div>
+      <div class="menu-button waves-effect" ng-click="navigate('video'); windowStack.push('video')"><p>Video</p></div>
+      <div class="menu-button waves-effect" ng-click="navigate('settings'); windowStack.push('settings')"><p>Settings</p></div>
+    </div>
+  </section>
+
+  <section id="music" class="window" ng-show="mainwindow === 'music'" ng-controller="Music" ng-cloak>
+    <div id="side-bar">
+      <p>Music</p>
+       <ul id="music-menu">
+          <li id="artists" class="music-menu-opt" ng-class="{ 'active': context === 'artists' }"  ng-click="changeContext('artists', 0)">
+            <svg viewBox="0 0 512.034 512.034">
+              <g>
+                <path d="M512.034,111.924c0-29.896-11.642-58.002-32.782-79.142C458.112,11.642,430.005,0,400.109,0
+                  c-29.896,0-58.003,11.642-79.143,32.782c-30.191,30.191-51.172,72.659-55.946,112.54c-0.281,0.231-0.553,0.475-0.803,0.746
+                  L8.516,423.078c-11.688,12.661-11.299,32.124,0.886,44.308l35.246,35.246c6.255,6.255,14.427,9.401,22.613,9.401
+                  c7.76,0,15.533-2.828,21.695-8.515l277.011-255.703c0.368-0.339,0.695-0.712,0.989-1.108c39.613-4.942,82.866-26.21,112.296-55.641
+                  C500.392,169.927,512.034,141.821,512.034,111.924z M467.938,44.096c18.118,18.117,28.096,42.206,28.096,67.828
+                  c0,22.937-8.001,44.641-22.675,61.937l-16.718-16.718c-3.124-3.125-8.189-3.125-11.313,0c-3.125,3.124-3.125,8.189,0,11.313
+                  l16.808,16.809c-27.754,25.1-66.232,42.696-100.963,45.992l-80.628-80.628c3.273-34.457,20.956-72.848,46.222-100.733l95.95,95.95
+                  c1.562,1.562,3.609,2.343,5.657,2.343s4.095-0.781,5.657-2.343c3.125-3.124,3.125-8.189,0-11.313l-95.857-95.857
+                  C355.468,24.001,377.172,16,400.109,16C425.731,16,449.82,25.978,467.938,44.096z M78.103,491.761
+                  c-6.328,5.841-16.053,5.646-22.142-0.442l-35.246-35.246c-6.089-6.089-6.283-15.814-0.442-22.142l250.055-270.893l78.668,78.668
+                  L78.103,491.761z"/>
+                <path d="M247.481,230.628c-4.531,4.531-7.026,10.555-7.026,16.962c0,3.639,0.807,7.154,2.333,10.343l-23.57,23.57
+                  c-3.125,3.124-3.125,8.189,0,11.313c1.562,1.562,3.609,2.343,5.657,2.343s4.095-0.781,5.657-2.343l23.597-23.597
+                  c3.255,1.548,6.78,2.348,10.315,2.348c6.142,0,12.286-2.338,16.962-7.014v0c9.353-9.353,9.353-24.572,0-33.925
+                  c-4.531-4.531-10.555-7.026-16.962-7.026S252.012,226.097,247.481,230.628z M270.092,253.238c-3.115,3.115-8.183,3.115-11.297,0
+                  c-1.509-1.509-2.34-3.515-2.34-5.648s0.831-4.14,2.34-5.648s3.515-2.34,5.648-2.34s4.14,0.831,5.649,2.34
+                  C273.206,245.056,273.206,250.124,270.092,253.238z"/>
+              </g>
+            </svg>
+            <span>Artists</span>
+          </li>
+          <li id="albums" class="music-menu-opt" ng-class="{ 'active': context === 'albums' }" ng-click="changeContext('albums', 1)">
+            <svg x="0px" y="0px" viewBox="0 0 287.8 287.8">
+              <g>
+                <path d="M143.9,0C64.423,0,0,64.423,0,143.9c0,79.479,64.418,143.9,143.9,143.9c79.474,0,143.9-64.421,143.9-143.9
+                  C287.8,64.423,223.374,0,143.9,0z M126.276,17.852l2.079,43.983c-15.102,2.838-28.772,9.748-39.827,19.545L52.594,55.261
+                  C71.857,35.418,97.533,21.829,126.276,17.852z M143.9,213.536c-38.393,0-69.63-31.234-69.63-69.636
+                  c0-38.388,31.237-69.625,69.63-69.625c38.396,0,69.636,31.237,69.636,69.625C213.536,182.301,182.295,213.536,143.9,213.536z"/>
+                <path d="M143.9,92.844c-28.153,0-51.062,22.906-51.062,51.056c0,28.148,22.908,51.066,51.062,51.066
+                  c28.158,0,51.066-22.918,51.066-51.066C194.966,115.75,172.048,92.844,143.9,92.844z M143.9,169.428
+                  c-14.097,0-25.531-11.434-25.531-25.533c0-14.1,11.434-25.525,25.531-25.525c14.1,0,25.533,11.431,25.533,25.525
+                  S158,169.428,143.9,169.428z"/>
+              </g>
+            </svg>
+            <span>Albums</span>
+          </li>
+          <li id="songs" class="music-menu-opt" ng-class="{ 'active': context === 'songs' }" ng-click="changeContext('songs', 2)">
+            <svg x="0px" y="0px" viewBox="0 0 25.685 25.685">
+              <g>
+                <path d="M22.08,0.098L10.97,3.497C9.624,3.881,8.533,5.285,8.533,6.631v11.557c0,0,0,0.158,0,0.162
+                  c0,0-0.805-0.543-2.598-0.289c-2.633,0.374-4.768,2.395-4.768,4.515s2.135,3.419,4.768,3.045c2.635-0.372,4.566-2.331,4.566-4.452
+                  c0,0,0-9.066,0-10.006s1.13-1.343,1.13-1.343l9.823-3.079c0,0,1.087-0.365,1.087,0.641s0,8.031,0,8.031s0,0.002,0,0.006
+                  c0,0-1.001-0.576-2.794-0.358c-2.633,0.319-4.768,2.298-4.768,4.417c0,2.121,2.135,3.463,4.768,3.143
+                  c2.635-0.319,4.77-2.297,4.77-4.418V1.84C24.517,0.494,23.425-0.286,22.08,0.098z"/>
+              </g>
+            </svg>
+            <span>Songs</span>
+          </li>
+        </ul>
+      </div>
+      <div class="window-content" id="music-content">
+        <!-- Artists -->
+        <div class="list-view" ng-show="context === 'artists'" ng-class="{'playing' : playing === true}">
+          <div class="sub-artist" ng-hide="currentArtist.songs.length > 0 || currentArtist.albums.length > 0">
+            <h2>artists</h2>
+            <table cellspacing="0">
+              <tr ng-repeat="artist in artists | orderBy: 'name'">
+                <td ng-click="showAlbums(artist, 0)">
+                  {{artist.name}}
+                </td>
+                <td class="details">
+                  <svg x="0px" y="0px" viewBox="0 0 287.8 287.8">
+                    <g>
+                      <path d="M143.9,0C64.423,0,0,64.423,0,143.9c0,79.479,64.418,143.9,143.9,143.9c79.474,0,143.9-64.421,143.9-143.9
+                        C287.8,64.423,223.374,0,143.9,0z M126.276,17.852l2.079,43.983c-15.102,2.838-28.772,9.748-39.827,19.545L52.594,55.261
+                        C71.857,35.418,97.533,21.829,126.276,17.852z M143.9,213.536c-38.393,0-69.63-31.234-69.63-69.636
+                        c0-38.388,31.237-69.625,69.63-69.625c38.396,0,69.636,31.237,69.636,69.625C213.536,182.301,182.295,213.536,143.9,213.536z"/>
+                      <path d="M143.9,92.844c-28.153,0-51.062,22.906-51.062,51.056c0,28.148,22.908,51.066,51.062,51.066
+                        c28.158,0,51.066-22.918,51.066-51.066C194.966,115.75,172.048,92.844,143.9,92.844z M143.9,169.428
+                        c-14.097,0-25.531-11.434-25.531-25.533c0-14.1,11.434-25.525,25.531-25.525c14.1,0,25.533,11.431,25.533,25.525
+                        S158,169.428,143.9,169.428z"/>
+                    </g>
+                  </svg>
+                  {{ artist.albums.length }}
+                </td>
+                <td class="details">
+                  <svg x="0px" y="0px" viewBox="0 0 25.685 25.685">
+                    <g>
+                      <path d="M22.08,0.098L10.97,3.497C9.624,3.881,8.533,5.285,8.533,6.631v11.557c0,0,0,0.158,0,0.162
+                        c0,0-0.805-0.543-2.598-0.289c-2.633,0.374-4.768,2.395-4.768,4.515s2.135,3.419,4.768,3.045c2.635-0.372,4.566-2.331,4.566-4.452
+                        c0,0,0-9.066,0-10.006s1.13-1.343,1.13-1.343l9.823-3.079c0,0,1.087-0.365,1.087,0.641s0,8.031,0,8.031s0,0.002,0,0.006
+                        c0,0-1.001-0.576-2.794-0.358c-2.633,0.319-4.768,2.298-4.768,4.417c0,2.121,2.135,3.463,4.768,3.143
+                        c2.635-0.319,4.77-2.297,4.77-4.418V1.84C24.517,0.494,23.425-0.286,22.08,0.098z"/>
+                    </g>
+                  </svg>
+                  {{ artist.songs.length }}
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="sub-albums" ng-repeat="album in currentArtist.albums" ng-show="currentArtist.albums.length > 0">
+            <div class="music-header">
+              <img ng-src="{{album.image}}" alt="" class="album-art small" />
+              <h2>{{ currentArtist.artist.name }} - {{ album.title }}</h2>
+            </div>
+            <table cellspacing="0">
+              <tr>
+                <th>track #</th>
+                <th>title</th>
+                <th class="duration">duration</th>
+              </tr>
+              <tr ng-repeat="song in album.songs | orderBy:'number'" ng-click="playSong(song, album)" ng-class="{'active': currentSong.title === song.title}">
+                <td>{{ song.number }}</td>
+                <td>{{ song.title }}</td>
+                <td class="duration">{{ song.duration || '0:00' | timecode }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- Albums -->
+        <div class="list-view" ng-show="context === 'albums'">
+          <div class="sub-album" ng-hide="currentAlbum.songs.length > 0">
+            <h2>albums</h2>
+            <table cellspacing="0">
+              <tr ng-repeat="album in albums | orderBy: 'title' track by $index" class="album-row">
+                <td ng-click="showSongs(album, 1)">
+                  <div class="background-image"><img ng-src="{{album.image}}" alt=""></div>
+                  <div class="song-info">
+                    {{album.title}} - <small>{{ getArtist(album.artist) }}</small>
+                    <div class="details">
+                      <div class="song-count">
+                        <svg x="0px" y="0px" viewBox="0 0 25.685 25.685">
+                          <g>
+                            <path d="M22.08,0.098L10.97,3.497C9.624,3.881,8.533,5.285,8.533,6.631v11.557c0,0,0,0.158,0,0.162
+                              c0,0-0.805-0.543-2.598-0.289c-2.633,0.374-4.768,2.395-4.768,4.515s2.135,3.419,4.768,3.045c2.635-0.372,4.566-2.331,4.566-4.452
+                              c0,0,0-9.066,0-10.006s1.13-1.343,1.13-1.343l9.823-3.079c0,0,1.087-0.365,1.087,0.641s0,8.031,0,8.031s0,0.002,0,0.006
+                              c0,0-1.001-0.576-2.794-0.358c-2.633,0.319-4.768,2.298-4.768,4.417c0,2.121,2.135,3.463,4.768,3.143
+                              c2.635-0.319,4.77-2.297,4.77-4.418V1.84C24.517,0.494,23.425-0.286,22.08,0.098z"/>
+                          </g>
+                        </svg>
+                        {{ album.songs.length }}
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </table>
+          </div>
+          <div class="sub-album-songs" ng-show="currentAlbum.songs.length > 0">
+            <div class="music-header">
+              <img ng-src="{{currentAlbum.image}}" alt="" class="album-art small" />
+              <h2>{{ currentAlbum.artist.name }} - {{ currentAlbum.title }}</h2>
+            </div>
+            <table cellspacing="0">
+              <tr>
+                <th>track #</th>
+                <th>title</th>
+                <th class="duration">duration</th>
+              </tr>
+              <tr ng-repeat="song in currentAlbum.songs | orderBy:'number'" ng-click="playSong(song, currentAlbum)" ng-class="{'active': currentSong.title === song.title}">
+                <td>{{ song.number }}</td>
+                <td>{{ song.title }}</td>
+                <td class="duration">{{ song.duration || '0:00' | timecode }}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <!-- songs -->
+        <div class="list-view song-list" ng-show="context === 'songs'">
+          <h2>songs</h2>
+          <table cellspacing="0">
+            <tr>
+              <th>title</th>
+              <th class="duration">duration</th>
+            </tr>
+            <tr ng-repeat="song in songs">
+              <td>{{ song.title }} -  <small>{{ getArtist(song.artist) }}</small></td>
+              <td class="duration">{{ song.duration | timecode }}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+  </section>
+
+  <section id="settings" class="window" ng-show="mainwindow === 'settings'" ng-controller="Settings" ng-cloak>
+    <h1>Settings</h1>
+    <button ng-click="refreshMusic()">Refresh music</button>
+    <table cellspacing="0" ng-repeat="(key, mainSetting) in settings">
+      <th>{{ key }}</th>
+      <tr ng-repeat="(key, setting) in mainSetting">
+        <td>{{ key }}</td>
+        <td>{{ setting }}</td>
+      </tr>
+    </table>
+  </section>
+
+  <div id="player" ng-controller="Player" ng-class="{'show-large-player': showFullPlayer === true}" ng-show="playing === true" ng-cloak>
+    <div class="wrap">
+      <div class="background-image"><img ng-src="{{currentAlbum.image}}" alt=""></div>
+      <div id="small-player">
+        <div class="scrub-wrap">
+          <div class="scrubber" ng-style=" scrubberWidth() "></div>
+        </div>
+        <div class="timecode start-time">{{ scrubber.value | timecode }}</div>
+        <div class="timecode end-time">{{ duration | timecode }}</div>
+        <div class="controls">
+          <div id="play" class="player-button" ng-click="playPause()">
+            <svg ng-show="paused === true" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 373.008 373.008" style="enable-background:new 0 0 373.008 373.008;" xml:space="preserve">
+              <g>
+                <g id="Layer_8_16_">
+                  <path d="M61.792,2.588C64.771,0.864,68.105,0,71.444,0c3.33,0,6.663,0.864,9.655,2.588l230.116,167.2
+                    c5.963,3.445,9.656,9.823,9.656,16.719c0,6.895-3.683,13.272-9.656,16.713L81.099,370.427c-5.972,3.441-13.334,3.441-19.302,0
+                    c-5.973-3.453-9.66-9.833-9.66-16.724V19.305C52.137,12.413,55.818,6.036,61.792,2.588z"/>
+                </g>
+              </g>
+            </svg>
+            <svg ng-show="paused === false" ng-cloak x="0px" y="0px" viewBox="0 0 124.5 124.5" style="enable-background:new 0 0 124.5 124.5;">
+              <g>
+                <path d="M116.35,124.5c3.3,0,6-2.699,6-6V6c0-3.3-2.7-6-6-6h-36c-3.3,0-6,2.7-6,6v112.5c0,3.301,2.7,6,6,6H116.35z"/>
+                <path d="M44.15,124.5c3.3,0,6-2.699,6-6V6c0-3.3-2.7-6-6-6h-36c-3.3,0-6,2.7-6,6v112.5c0,3.301,2.7,6,6,6H44.15z"/>
+              </g>
+            </svg>
+          </div>
+          <div class="info">
+            <p ng-show="currentArtist.artist">{{ currentArtist.artist.name }} - {{ currentSong.title }}</p>
+          </div>
+          <div id="open-player" class="player-toggle" ng-click="showFullPlayer = true">
+            <svg x="0px" y="0px" viewBox="0 0 44.238 44.238">
+            	<g>
+            		<path d="M22.119,44.237C9.922,44.237,0,34.315,0,22.119S9.922,0.001,22.119,0.001s22.119,9.922,22.119,22.118
+            			S34.314,44.237,22.119,44.237z M22.119,1.501C10.75,1.501,1.5,10.75,1.5,22.119c0,11.368,9.25,20.618,20.619,20.618
+            			s20.619-9.25,20.619-20.618C42.738,10.75,33.488,1.501,22.119,1.501z"/>
+            		<path d="M24.667,29.884c-0.192,0-0.384-0.072-0.53-0.22l-7.328-7.334c-0.292-0.293-0.292-0.768,0-1.061l7.328-7.333
+            			c0.293-0.293,0.768-0.293,1.061,0s0.293,0.768,0,1.061L18.4,21.8l6.798,6.805c0.292,0.293,0.292,0.769,0,1.061
+            			C25.051,29.812,24.859,29.884,24.667,29.884z"/>
+            	</g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="large-player">
+      <div class="background-image"><img ng-src="{{currentAlbum.image}}" alt=""></div>
+      <div class="player-content">
+        <div id="close-player" class="player-toggle" ng-click="showFullPlayer = false">
+          <svg x="0px" y="0px" viewBox="0 0 224.512 224.512">
+          	<g>
+          		<polygon points="224.507,6.997 217.521,0 112.256,105.258 6.998,0 0.005,6.997 105.263,112.254
+          			0.005,217.512 6.998,224.512 112.256,119.24 217.521,224.512 224.507,217.512 119.249,112.254 	"/>
+          	</g>
+          </svg>
+        </div>
+
+        <div class="album-art large">
+          <img ng-src="{{currentAlbum.image}}" alt="">
+        </div>
+
+        <div class="large-controls">
+          <div id="scrub-wrap">
+            <input type="range" value="{{playtime}}" min="0" max="{{duration}}" id="scrubber" ng-model="scrubber.value" ng-change="seek(scrubber.value)" />
+          </div>
+          <div class="player">
+            <div class="timecode start-time">{{ scrubber.value | timecode }}</div>
+            <div class="timecode end-time">{{ duration | timecode }}</div>
+            <div class="buttons">
+              <div class="player-button rewind" ng-click="rewind()" ng-dblclick="prevSong()">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 518.939 518.94" style="enable-background:new 0 0 518.939 518.94;"xml:space="preserve">
+                	<g>
+                		<g>
+                			<path d="M500.31,18.443h-55.894c-10.288,0-18.629,8.341-18.629,18.629v170.423L247.205,28.914
+                				c-18.188-18.188-32.938-12.081-32.938,13.642v167.688L32.938,28.914C14.75,10.726,0,16.833,0,42.556v433.829
+                				c0,25.722,14.75,31.83,32.938,13.642l181.33-181.33v167.688c0,25.722,14.749,31.83,32.938,13.642l178.582-178.582v170.424
+                				c0,10.287,8.341,18.629,18.629,18.629h55.894c10.288,0,18.63-8.342,18.63-18.629V37.072
+                				C518.939,26.784,510.598,18.443,500.31,18.443z"/>
+                		</g>
+                	</g>
+                </svg>
+              </div>
+              <div class="player-button" ng-click="playPause()">
+                <svg ng-show="paused === true" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 373.008 373.008" style="enable-background:new 0 0 373.008 373.008;" xml:space="preserve">
+                	<g>
+                		<g id="Layer_8_16_">
+                			<path d="M61.792,2.588C64.771,0.864,68.105,0,71.444,0c3.33,0,6.663,0.864,9.655,2.588l230.116,167.2
+                				c5.963,3.445,9.656,9.823,9.656,16.719c0,6.895-3.683,13.272-9.656,16.713L81.099,370.427c-5.972,3.441-13.334,3.441-19.302,0
+                				c-5.973-3.453-9.66-9.833-9.66-16.724V19.305C52.137,12.413,55.818,6.036,61.792,2.588z"/>
+                		</g>
+                	</g>
+                </svg>
+                <svg ng-show="paused === false" ng-cloak x="0px" y="0px" viewBox="0 0 124.5 124.5" style="enable-background:new 0 0 124.5 124.5;">
+                	<g>
+                		<path d="M116.35,124.5c3.3,0,6-2.699,6-6V6c0-3.3-2.7-6-6-6h-36c-3.3,0-6,2.7-6,6v112.5c0,3.301,2.7,6,6,6H116.35z"/>
+                		<path d="M44.15,124.5c3.3,0,6-2.699,6-6V6c0-3.3-2.7-6-6-6h-36c-3.3,0-6,2.7-6,6v112.5c0,3.301,2.7,6,6,6H44.15z"/>
+                	</g>
+                </svg>
+              </div>
+              <div class="player-button" ng-click="fastForward()">
+                <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 518.939 518.94" style="enable-background:new 0 0 518.939 518.94;" xml:space="preserve">
+                	<g>
+                		<g>
+                			<path d="M500.31,18.443h-55.894c-10.288,0-18.629,8.341-18.629,18.629v170.423L247.205,28.914
+                				c-18.188-18.188-32.938-12.081-32.938,13.642v167.688L32.938,28.914C14.75,10.726,0,16.833,0,42.556v433.829
+                				c0,25.722,14.75,31.83,32.938,13.642l181.33-181.33v167.688c0,25.722,14.749,31.83,32.938,13.642l178.582-178.582v170.424
+                				c0,10.287,8.341,18.629,18.629,18.629h55.894c10.288,0,18.63-8.342,18.63-18.629V37.072
+                				C518.939,26.784,510.598,18.443,500.31,18.443z"/>
+                		</g>
+                	</g>
+                </svg>
+              </div>
+            </div>
+            <div class="song-info">
+              <span>{{currentArtist.artist.name}} - {{currentSong.title}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="bower/moment/moment.js"></script>
+  <script src="bower/ftscroller/lib/ftscroller.js"></script>
+  <script src="bower/angular/angular.js"></script>
+  <script src="static/demo/main.js"></script>
+  <script src="static/demo/jquery.min.js"></script>
+  <script src="static/demo/pouchdb-5.0.0.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+{
+  "name": "ftscroller",
+  "description": "FTScroller is a cross-browser Javascript/CSS library to allow touch, mouse or scrollwheel scrolling within specified elements, with pagination, snapping and bouncing support.",
+  "version": "0.6.2",
+  "main": "lib/ftscroller.js",
+  "scripts": [
+    "lib/ftscroller.js"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/ftlabs/ftscroller",
+  "_release": "0.6.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.6.2",
+    "commit": "bd9b9ba46b518a31329d42a097c32e29cdf29d5d"
+  },
+  "_source": "git://github.com/ftlabs/ftscroller.git",
+  "_target": "~0.6.2",
+  "_originalSource": "ftscroller",
+  "_direct": true
+}

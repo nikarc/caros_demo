@@ -1,0 +1,768 @@
+body {
+  position: relative;
+  height: 100vh;
+  background-color: rgb(79, 162, 215);
+  font-family: Roboto;
+}
+
+#screen {
+  position: relative;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%);
+  width: 800px;
+  height: 480px;
+  border: 1px solid rgb(208, 208, 208);
+  border-radius: 3px;
+  box-shadow: 4px 4px 8px 2px rgba(black, 0.5);
+  color: white;
+  position: relative;
+  font-weight: 300;
+  background: #303030 url('../images/large_leather.png');
+  position: relative;
+  overflow: hidden;
+}
+
+#window-menu-bar {
+  width: 100%;
+  background-color: rgb(208, 208, 208);
+  padding: 2px 5px;
+
+  button {
+    border-radius: 50%;
+    color: rgb(48, 48, 48);
+    background: none;
+    border: none;
+    width: 10px;
+    height: 10px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 3px;
+    border: 1px solid;
+  }
+}
+
+button {
+
+  &#close {
+    background-color: tomato;
+    border-color: darken(tomato, 15%);
+  }
+
+  &#minimize {
+    background-color: rgb(255, 234, 92);
+    border-color: darken(rgb(255, 234, 92), 15%);
+  }
+
+  &#maximize {
+    background-color: rgb(71, 208, 132);
+    border-color: darken(rgb(71, 208, 132), 15%);
+  }
+}
+
+
+
+/* ------------------------- */
+
+$darkgray: rgb(37,37,37);
+$blue: #6E85FA;
+$red: #CF155B;
+
+@mixin blur {
+  -webkit-filter: blur(20px);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-user-select: none;
+}
+
+html, body {
+  height: 100%;
+  overflow: hidden;
+}
+
+button {
+  font-family: 'Roboto';
+}
+
+h1,h2,h3,h4 {
+  font-weight: 100;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.active {
+  background-color: $red;
+}
+
+@keyframes slidein {
+  from {
+    transform: translateX(200%);
+  }
+}
+
+.album-art {
+  &.large {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      height: 70vh;
+    }
+  }
+
+  &.small {
+    width: 124px;
+    display: inline-block;
+  }
+}
+
+#content {
+  height: 100%;
+
+  .clock {
+    font-size: 1.2em;
+    margin-bottom: 50px;
+  }
+}
+
+.clock {
+  text-align: center;
+}
+
+#status-bar {
+  text-align: center;
+  position: relative;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  padding: 5px 0;
+  opacity: 0;
+
+  .clock {
+    display: inline-block;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.window {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: darken($darkgray, 10%);
+  width: 100%;
+  height: 100%;
+  animation-name: slidein;
+  animation-duration: 0.2s;
+}
+
+#bottomBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 75px;
+}
+
+$buttonSize: 42px;
+$smallPlayerHeight: 40px;
+
+// Music player
+#player {
+  width: 100vw;
+  background-color: rgb(37, 37, 37);
+  position: absolute;
+  bottom: -100vh;
+  left: 0;
+  transition: all 0.2s;
+
+  .wrap {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &.show-large-player {
+    bottom: 0;
+  }
+
+  .background-image {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      @include blur;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+    }
+  }
+}
+
+.player-toggle {
+  padding: 5px;
+
+  svg {
+    fill: white;
+  }
+}
+
+.timecode {
+  padding: 10px 5px;
+  position: absolute;
+}
+
+#open-player {
+  width: 35px;
+  height: 100%;
+  margin-left: auto;
+  transform: rotate(90deg);
+}
+
+#close-player {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+
+  svg {
+    width: 18px;
+  }
+}
+
+#small-player {
+  height: $smallPlayerHeight;
+  position: relative;
+  font-size: 0.7em;
+  z-index: 2;
+
+  .scrub-wrap {
+    height: 2px;
+    width: 100%;
+    background-color: lighten($darkgray, 15%);;
+
+    .scrubber {
+      height: 100%;
+      width: 0;
+      background-color: $red;
+    }
+  }
+
+  .start-time {
+    left: 10px;
+    top: 5px;
+  }
+
+  .end-time {
+    right: 10px;
+    top: 5px;
+  }
+
+  .controls {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 10%;
+  }
+
+  .player-button {
+    height: 100%;
+
+    svg {
+      width: 12px;
+    }
+
+    &:active {
+      background-color: $red;
+    }
+  }
+}
+
+#large-player {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  padding: 25px 0 0 0;
+  overflow: hidden;
+
+  .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      @include blur;
+      transform: none;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .player-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    padding: 20px 0 0 0;
+
+    .album-art {
+      img {
+        box-shadow: 4px 4px 8px 2px rgba(black, 0.5);
+      }
+    }
+  }
+
+  .large-controls {
+    width: 100%;
+    padding: 5px 0;
+    background-color: $darkgray;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+
+  .player {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(-15px);
+    position: relative;
+  }
+
+  .timecode {
+    font-size: 0.7em;
+  }
+
+  .start-time {
+    top: 0;
+    left: 10px;
+  }
+
+  .end-time {
+    top: 0;
+    right: 10px;
+  }
+}
+
+.player-button {
+  width: $buttonSize;
+  height: $buttonSize;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  z-index: 10;
+
+  svg {
+    fill: white;
+    width: $buttonSize * 0.5;
+    height: $buttonSize * 0.5;
+  }
+
+  &.rewind {
+    transform: scaleX(-1);
+  }
+}
+
+#play svg:first-child {
+  transform: translateX(2px);
+}
+
+#fast-forward, #rewind {
+  width: 24px;
+  height: 24px;
+  margin: 0 5px;
+
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+#rewind {
+  transform: rotate(180deg);
+}
+
+#scrub-wrap {
+  transform: translateY(-15px);
+  width: 100%;
+}
+
+#timecode-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.7em;
+  padding: 0 10px;
+}
+
+#scrubber {
+  -webkit-appearance: none;
+  width: 100%;
+
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 32px;
+    background: $red;
+    margin-top: 0;
+    transform-origin: 50% 0 0;
+    transition: all 0.2s;
+    background-clip: padding-box;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+  }
+
+  &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 16px;
+    cursor: pointer;
+    background: rgb(37,37,37);
+    border-top: 2px solid $red;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+#song-info {
+  display: block;
+}
+
+#side-bar {
+  width: 20%;
+  height: 100%;
+  background-color: $darkgray;
+  padding: 5px 0;
+  float: left;
+
+  p {
+    text-align: center;
+    padding: 15px 0;
+  }
+
+  ul {
+    border-top: 1px solid lighten($darkgray, 10%);
+    padding-top: 5px;
+
+    li {
+      font-size: 0.8em;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s;
+
+      &:active {
+        background-color: lighten($darkgray, 15%);
+
+        span {
+          border-bottom: 1px solid white;
+        }
+      }
+
+      &.active {
+        background-color: $red;
+
+        span {
+          border-bottom: 1px solid white;
+        }
+      }
+
+      svg {
+        fill: white;
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+      }
+
+      span {
+        border-bottom: 1px solid lighten($darkgray, 10%);
+        width: calc(100% - 16px);
+        display: inline-block;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+.window-content {
+  float: left;
+  width: 80%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#bottom-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  transition: all 0.2s;
+}
+
+#backButton {
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 25;
+  padding: 5px 15px;
+  transition: all 0.2s;
+
+  svg {
+    fill: white;
+    height: 28px;
+    width: 28px;
+  }
+}
+
+// Menu
+
+#main-menu {
+
+  .clock {
+    font-weight: 100;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+#main-menu-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: darken($darkgray, 5%);
+  padding: 10px 0;
+  border-radius: 5px;
+}
+
+.menu-button {
+  margin: 0 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
+  height: 200px;
+  background-color: $darkgray;
+  border-radius: 5px;
+
+  &:nth-child(1) {
+    margin-left: 10px;
+  }
+
+  &:nth-last-child {
+    margin-right: 10px;
+  }
+
+  &:active {
+    background-color: $blue;
+  }
+}
+
+#music-list {
+  overflow: auto;
+}
+
+.list-view {
+  padding: 25px 15px 0 15px;
+
+  h2 {
+    margin-bottom: 10px;
+    display: inline-block;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  table {
+    width: 100%;
+    color: rgba(white, 0.75);
+    margin-bottom: 50px;
+  }
+
+  tr {
+    transition: all 0.2s;
+
+    &:active {
+      background-color: $red;
+    }
+
+    &:first-child {
+      margin-bottom: 15px;
+    }
+
+    &.album-row td {
+      height: 35px;
+    }
+  }
+
+  th {
+    text-align: left;
+    font-weight: 100;
+    font-size: 0.65em;
+  }
+
+  td {
+    font-size: 0.8em;
+    border-bottom: 1px solid lighten($darkgray, 5%);
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+
+    &.details {
+      width: 10%;
+      text-align: right;
+
+      svg {
+        width: 12px;
+        height: 12px;
+        fill: white;
+        margin-right: 5px;
+      }
+    }
+
+    .background-image {
+      position: absolute;
+      z-index: 1;
+      width: 100%;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+
+      img {
+        width: 100%;
+        -webkit-filter: blur(20px);
+      }
+    }
+
+    .song-info {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      padding: 10px;
+      width: 100%;
+    }
+  }
+
+  td, th {
+    padding: 10px;
+
+    &.duration {
+      text-align: right;
+    }
+  }
+
+  small {
+    font-size: 0.7em;
+  }
+
+  &.playing {
+    height: calc(100% - 100px);
+  }
+
+}
+
+.list-info {
+  float: right;
+}
+
+div[class^='sub'] {
+  width: 100%;
+}
+
+.music-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+
+  img {
+    margin-right: 15px;
+  }
+}
+
+// Settings
+
+#settings {
+  padding: 12px;
+
+  button {
+    font-size: 1em;
+    margin-top: 10px;
+    background: $red;
+    padding: 10px;
+    color: white;
+    border: none;
+  }
+
+  table {
+    margin: 15px 0;
+    width: 100%;
+
+    th {
+      text-transform: capitalize;
+      padding: 10px 0;
+      text-align: left;
+      font-size: 1.5em;
+      font-weight: 100;
+    }
+
+    td {
+      padding: 5px 10px;
+      border: 1px solid lighten($darkgray, 15%);
+
+      &:nth-child(1) {
+        background-color: lighten($darkgray, 15%);
+      }
+    }
+  }
+}
+
+
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
+}

@@ -12,6 +12,8 @@ gulp.task('serve', ['sass'], function() {
 		open: false
 	});
 	gulp.watch('./sass/*.scss', ['sass']);
+	gulp.watch('./src/server/*.js', ['server-babel']);
+	gulp.watch('./src/*.js', ['babel']);
 	gulp.watch('./*.html').on('change', browserSync.reload);
 });
 
@@ -19,15 +21,21 @@ gulp.task('sass', function() {
 	return gulp.src('./sass/*.scss')
 		.pipe(sass())
 		.pipe(minifyCss())
-		.pipe(gulp.dest('./styles'))
+		.pipe(gulp.dest('./static/styles'))
 		.pipe(browserSync.stream());
 });
 
-gulp.task('babel', function() {
-  return gulp.src('./scripts/*.js')
+gulp.task('server-babel', function() {
+  return gulp.src('./src/server/server.js')
     .pipe(babel())
-    .pipe(uglify())
-    .pipe(gulp.dest('./scripts'));
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('babel', function() {
+	return gulp.src('./src/*.js')
+		.pipe(babel())
+		.pipe(uglify())
+		.pipe(gulp.dest('./scripts'));
 });
 
 gulp.task('watch', ['serve']);
