@@ -1,10 +1,10 @@
 'use strict';
 
-var Datastore = require('nedb');
-var db = {};
-db.songs = new Datastore({ filename: 'database/caros_songs.db' });
-db.artists = new Datastore({ filename: 'database/caros_artists.db' });
-db.albums = new Datastore({ filename: 'database/caros_albums.db' });
+var db = {
+  songs: new Nedb({ filename: 'database/caros_songs.db' }),
+  artists: new Nedb({ filename: 'database/caros_artists.db' }),
+  albums: new Nedb({ filename: 'database/caros_albums.db' })
+};
 
 db.songs.loadDatabase();
 db.artists.loadDatabase();

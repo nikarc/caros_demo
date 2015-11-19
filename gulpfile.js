@@ -6,13 +6,14 @@ var gulp = require('gulp'),
 		browserSync = require('browser-sync').create();
 
 // Place .scss files in ./sass
-gulp.task('serve', ['sass'], function() {
+gulp.task('serve', ['sass','demo-babel', 'server-babel', 'babel'], function() {
 	browserSync.init({
 		server: './',
 		open: false
 	});
 	gulp.watch('./sass/*.scss', ['sass']);
 	gulp.watch('./src/server/*.js', ['server-babel']);
+	gulp.watch('./src/demo/*.js', ['demo-babel']);
 	gulp.watch('./src/*.js', ['babel']);
 	gulp.watch('./*.html').on('change', browserSync.reload);
 });
@@ -29,6 +30,12 @@ gulp.task('server-babel', function() {
   return gulp.src('./src/server/server.js')
     .pipe(babel())
     .pipe(gulp.dest('./'));
+});
+
+gulp.task('demo-babel', function() {
+	return gulp.src('./src/demo/*.js')
+		.pipe(babel())
+		.pipe(gulp.dest('./static/demo'));
 });
 
 gulp.task('babel', function() {

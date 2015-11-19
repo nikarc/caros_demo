@@ -35,7 +35,7 @@ app.controller('MainMenu', function ($scope) {});
   Music Controller
 ***************/
 
-app.controller('Music', function ($scope, $filter, $timeout, MusicService) {
+app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService) {
   $scope.songs = [];
   $scope.artists = [];
   $scope.albums = [];
@@ -47,6 +47,17 @@ app.controller('Music', function ($scope, $filter, $timeout, MusicService) {
   };
 
   $scope.currentArtist = { artist: null, songs: [] };
+
+  $http({
+    method: 'GET',
+    url: '/demo/add_files'
+  }).then(function(songs) {
+    songs.data.songs.forEach((song) => {
+      add_music(song, () => {
+        console.log('done');
+      });
+    });
+  });
 
   $scope.$watch(function () {
     return MusicService.currentSong;
@@ -78,35 +89,12 @@ app.controller('Music', function ($scope, $filter, $timeout, MusicService) {
     }, 100);
   };
 
-  // request and recieve music files from file system on first time setup
-  ipc.send('getMusicFiles');
 
-  ipc.on('musicFiles', function (arg) {
-    // save to db
-    var pathReg = /\#/gi;
-    arg.path = arg.path.replace(pathReg, function (match) {
-      return encodeURIComponent(match);
-    });
-    var audio = new Audio(arg.path);
-    audio.load();
-    audio.addEventListener('loadedmetadata', function () {
-      arg.duration = audio.duration;
-
-      add_music(arg, function () {
-        get_songs(function (files) {
-          $scope.songs = angular.copy(files.songs);
-          $scope.artists = angular.copy(files.artists);
-          $scope.albums = angular.copy(files.albums);
-        });
-      });
-    });
-  });
-
-  get_songs(function (files) {
-    $scope.songs = angular.copy(files.songs);
-    $scope.artists = angular.copy(files.artists);
-    $scope.albums = angular.copy(files.albums);
-  });
+  // get_songs(function (files) {
+  //   $scope.songs = angular.copy(files.songs);
+  //   $scope.artists = angular.copy(files.artists);
+  //   $scope.albums = angular.copy(files.albums);
+  // });
 
   // artist views
   $scope.showAlbums = function (artist, index) {
@@ -202,18 +190,8 @@ app.controller('Settings', function ($scope) {
   $scope.settings = {};
 
   $scope.refreshMusic = function () {
-    ipc.send('refreshMusic');
-
-    ipc.on('refresh', function () {
-      location.reload();
-    });
+    // fake refresh
   };
-
-  ipc.send('getUserSettings');
-
-  ipc.on('userSettings', function (settings) {
-    $scope.settings = settings;
-  });
 });
 
 /***************
