@@ -3,46 +3,43 @@ var gulp = require('gulp'),
 		minifyCss = require('gulp-minify-css'),
     uglify = require('gulp-uglify'),
     babel = require('gulp-babel'),
-		browserSync = require('browser-sync').create();
+		browserify = require('browserify'),
+		source = require('vinyl-source-stream'),
+		buffer = require('vinyl-buffer'),
+		babelify = require('babelify');
 
-// Place .scss files in ./sass
-gulp.task('serve', ['sass','demo-babel', 'server-babel', 'babel'], function() {
-	browserSync.init({
-		server: './',
-		open: false
-	});
-	gulp.watch('./sass/*.scss', ['sass']);
-	gulp.watch('./src/server/*.js', ['server-babel']);
-	gulp.watch('./src/demo/*.js', ['demo-babel']);
-	gulp.watch('./src/*.js', ['babel']);
-	gulp.watch('./*.html').on('change', browserSync.reload);
-});
+gulp.task('demo-babel', function() {
+	var dbBundler = browserify('src/demo/database.js');
+	dbBundler.transform(babelify);
 
-gulp.task('sass', function() {
-	return gulp.src('./sass/*.scss')
-		.pipe(sass())
-		.pipe(minifyCss())
-		.pipe(gulp.dest('./static/styles'))
-		.pipe(browserSync.stream());
+	dbBundler.bundle()
+		.on('error', function(err) { console.log(err); })
+		.pipe(source('database.js'))
+		.pipe(gulp.dest('./static/scripts'));
+
+	var mainBundler = browserify('src/demo/main.js');
+	mainBundler.transform(babelify);
+
+	mainBundler.bundle()
+		.on('error', function(err) { console.log(err); })
+		.pipe(source('main.js'))
+		.pipe(gulp.dest('./static/scripts'));
 });
 
 gulp.task('server-babel', function() {
-  return gulp.src('./src/server/server.js')
-    .pipe(babel())
-    .pipe(gulp.dest('./'));
-});
-
-gulp.task('demo-babel', function() {
-	return gulp.src('./src/demo/*.js')
+	return gulp.src('./src/server/*.js')
 		.pipe(babel())
-		.pipe(gulp.dest('./static/demo'));
+		.pipe(gulp.dest('./'));
 });
 
-gulp.task('babel', function() {
-	return gulp.src('./src/*.js')
-		.pipe(babel())
-		.pipe(uglify())
-		.pipe(gulp.dest('./scripts'));
+gulp.task('sass', function() {
+	return gulp.src('./src/sass/*.scss')
+		.pipe(sass())
+		.pipe(gulp.dest('./static/styles'));
 });
 
-gulp.task('watch', ['serve']);
+gulp.task('watch', ['demo-babel', 'server-babel', 'sass'], function() {
+	gulp.watch('./src/demo/*.js', ['demo-babel']);
+	gulp.watch('./src/server/server.js', ['server-babel']);
+	gulp.watch('./src/sass/*.scss', ['sass']);
+});

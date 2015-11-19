@@ -93,9 +93,9 @@ app.get('/demo/add_files', function (req, res) {
             res.send({ songs: songs });
 
             obj.firstTimeSetup = true;
-            // jsonfile.writeFile(user_prefs_file, obj, (err) => {
-            //   console.error(err);
-            // });
+            jsonfile.writeFile(user_prefs_file, obj, function (err) {
+              console.error(err);
+            });
           });
         }
       });
