@@ -1,0 +1,30 @@
+{
+  "songs": [
+    {"_id": 1, "title": "It #1", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/01 It #1.mp3"},
+    {"_id": 2, "title": "Standing At The Station", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/02 Standing At The Station.mp3"},
+    {"_id": 3, "title": "In Your Car", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/03 In Your Car.mp3"},
+    {"_id": 4, "title": "Lovely One", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/04 Lovely One.mp3"},
+    {"_id": 5, "title": "Can't Talk", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/05 Can't Talk.mp3"},
+    {"_id": 6, "title": "Cents", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/06 Cents.mp3"},
+    {"_id": 7, "title": "Untitled #2", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/07 Untitled #2.mp3"},
+    {"_id": 8, "title": "Rusted Dust", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/08 Rusted Dust.mp3"},
+    {"_id": 9, "title": "Die Tonight", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/09 Die Tonight.mp3"},
+    {"_id": 10, "title": "Johnny", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/10 Johnny.mp3"},
+    {"_id": 11, "title": "Drop Out Boogie", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/11 Drop Out Boogie.mp3"},
+    {"_id": 12, "title": "Like You", "artist": 1, "album": 1, "path": "music/Ty Segall/Lemons/11 Like You.mp3"},
+
+    {"_id": 13, "title": "I'm Going Away", "artist": 2, "album": 2, "path": "music/The Greenhornes/East Grand Blues/01 I'm Going Away.mp3"},
+    {"_id": 14, "title": "Shelter Of Your Arms", "artist": 2, "album": 2, "path": "music/The Greenhornes/East Grand Blues/02 Shelter Of Your Arms.mp3"},
+    {"_id": 15, "title": "At Night", "artist": 2, "album": 2, "path": "music/The Greenhornes/East Grand Blues/03 At Night.mp3"},
+    {"_id": 16, "title": "Pattern Skies", "artist": 2, "album": 2, "path": "music/The Greenhornes/East Grand Blues/04 Pattern Skies.mp3"},
+    {"_id": 17, "title": "Shine Like The Sun", "artist": 2, "album": 2, "path": "music/The Greenhornes/East Grand Blues/05 Shine Like The Sun.mp3"}
+  ],
+  "artists": [
+    {"_id": 1, "name": "Ty Segall", "albums": [1], "songs": [1,2,3,4,5,6,7,8,9,10,11,12]},
+    {"_id": 2, "name": "The Greenhornes", "albums": [2], "songs": [13,14,15,16,17]}
+  ],
+  "albums": [
+    {"_id": 1, "title": "Lemons", "songs": [1,2,3,4,5,6,7,8,9,10,11,12], "image": "music/album_art/Ty Segall - Lemons.jpg"},
+    {"_id": 2, "title": "East Grand Blues", "songs": [13,14,15,16,17], "image": "music/album_art/The Greenhornes - East Grand Blues.jpg"}
+  ]
+}

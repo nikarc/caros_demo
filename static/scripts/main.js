@@ -9601,20 +9601,11 @@ app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService
 
   $http({
     method: 'GET',
-    url: '/demo/add_files'
+    url: '/demo/get_songs'
   }).then(function (res) {
-    console.log('Response is: ' + res);
-    res.data.songs.forEach(function (song) {
-      (0, _database.add_music)(song, function () {
-        console.log('done');
-      });
-    });
-  });
-
-  (0, _database.get_songs)(function (data) {
-    $scope.artists = data.artists;
-    $scope.albums = data.albums;
-    $scope.songs = data.songs;
+    $scope.artists = res.data.artists;
+    $scope.albums = res.data.albums;
+    $scope.songs = res.data.songs;
   });
 
   $scope.$watch(function () {

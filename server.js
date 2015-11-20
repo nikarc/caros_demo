@@ -6,9 +6,6 @@ var app = express();
 var path = require('path');
 var fs = require('fs');
 var jsonfile = require('jsonfile');
-var walk = require('walk');
-var id3 = require('id3-parser');
-var mkdirp = require('mkdirp');
 
 var PORT = 8080;
 var user_prefs_file = 'user_prefs.json';
@@ -25,81 +22,24 @@ app.get('/demo', function (req, res) {
   res.sendFile(path.join(__dirname + '/demo.html'));
 });
 
-app.get('/demo/add_files', function (req, res) {
-  var songs = [];
-  jsonfile.readFile(user_prefs_file, function (err, settings) {
-    if (err) console.error(err);
+app.get('/demo/get_songs', function (req, res) {
+  var songs = [],
+      artists = [],
+      albums = [];
+  jsonfile.readFile('./music.json', function (err, db) {
+    if (err) console.error('ERR: ', err);
 
-    if (!settings.firstTimeSetup) {
-      jsonfile.readFile(user_prefs_file, function (err, obj) {
-        var musicpath = obj.user_preferences.music.path;
-        if (obj.firstTimeSetup === false || nocheck) {
+    db.songs.forEach(function (song) {
+      songs.push(song);
+    });
+    db.artists.forEach(function (artist) {
+      artists.push(artist);
+    });
+    db.albums.forEach(function (album) {
+      albums.push(album);
+    });
 
-          var data = [];
-          var walker = walk.walk(musicpath, { followLinks: false });
-
-          walker.on('file', function (root, fileStat, next) {
-            if (fileStat.name.indexOf('.mp3') > -1 && root.indexOf('.Trashes') === -1) {
-              var filebuffer = fs.readFileSync(path.resolve(root, fileStat.name));
-
-              id3.parse(filebuffer).then(function (tag) {
-                var songObj = {
-                  title: tag.title,
-                  artist: tag.artist,
-                  album: tag.album,
-                  genre: tag.genre,
-                  path: path.resolve(root, '' + fileStat.name),
-                  tracknum: parseInt(tag.track.slice(0, tag.track.indexOf('/')))
-                };
-                if (tag) {
-                  (function () {
-                    var imagepath = path.resolve(__dirname, 'music', 'album_art', tag.artist + ' - ' + tag.album + '.jpg');
-                    var albums = [];
-                    if (albums.indexOf(tag.album.toLowerCase()) === -1) {
-                      (function () {
-                        albums.push(tag.album.toLowerCase());
-
-                        var image = new Buffer(tag.image.data);
-
-                        try {
-                          console.log('creating image at ' + imagepath);
-                          mkdirp(path.resolve(__dirname, 'music', 'album_art'), function (err) {
-                            fs.writeFileSync(imagepath, image, { flags: 'wx' });
-                          });
-                        } catch (e) {
-                          console.log('IMGERROR: ' + e);
-                        }
-                      })();
-                    }
-                    console.log('Track #: ' + tag.track);
-                    songObj.image = imagepath;
-                  })();
-                } else {
-                  console.log(fileStat.name);
-                  songObj = {
-                    title: fileStat.name,
-                    path: path.resolve(root, '' + fileStat.name)
-                  };
-                }
-
-                songs.push(songObj);
-              });
-            }
-
-            next();
-          });
-
-          walker.on('end', function () {
-            res.send({ songs: songs });
-
-            obj.firstTimeSetup = true;
-            jsonfile.writeFile(user_prefs_file, obj, function (err) {
-              console.error(err);
-            });
-          });
-        }
-      });
-    }
+    res.send({ songs: songs, artists: artists, albums: albums });
   });
 });
 

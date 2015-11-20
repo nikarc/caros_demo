@@ -50,20 +50,11 @@ app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService
 
   $http({
     method: 'GET',
-    url: '/demo/add_files'
+    url: '/demo/get_songs'
   }).then(function(res) {
-    console.log(`Response is: ${res}`);
-    res.data.songs.forEach((song) => {
-      add_music(song, () => {
-        console.log('done');
-      });
-    });
-  });
-
-  get_songs((data) => {
-    $scope.artists = data.artists;
-    $scope.albums = data.albums;
-    $scope.songs = data.songs;
+    $scope.artists = res.data.artists;
+    $scope.albums = res.data.albums;
+    $scope.songs = res.data.songs;
   });
 
   $scope.$watch(function () {
