@@ -9602,8 +9602,9 @@ app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService
   $http({
     method: 'GET',
     url: '/demo/add_files'
-  }).then(function (songs) {
-    songs.data.songs.forEach(function (song) {
+  }).then(function (res) {
+    console.log('Response is: ' + res);
+    res.data.songs.forEach(function (song) {
       (0, _database.add_music)(song, function () {
         console.log('done');
       });
@@ -9611,7 +9612,9 @@ app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService
   });
 
   (0, _database.get_songs)(function (data) {
-    console.log(data);
+    $scope.artists = data.artists;
+    $scope.albums = data.albums;
+    $scope.songs = data.songs;
   });
 
   $scope.$watch(function () {
@@ -9978,5 +9981,9 @@ app.filter('timecode', function () {
     scrollingX: false
   });
 }
+
+var dropData = function dropData() {
+  drop_dbs();
+};
 
 },{"./database.js":23}]},{},[24]);
