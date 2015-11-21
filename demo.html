@@ -194,8 +194,8 @@
               <th>title</th>
               <th class="duration">duration</th>
             </tr>
-            <tr ng-repeat="song in songs">
-              <td>{{ song.title }} -  <small>{{ getArtist(song.artist) }}</small></td>
+            <tr ng-repeat="song in songs" ng-click="playSong(song)">
+              <td>{{ song.title }} -  <small>{{ getArtist(song.artist) }}</small>{{ song.path }}</td>
               <td class="duration">{{ song.duration | timecode }}</td>
             </tr>
           </table>

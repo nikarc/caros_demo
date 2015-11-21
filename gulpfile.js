@@ -33,7 +33,7 @@ gulp.task('server-babel', function() {
 });
 
 gulp.task('sass', function() {
-	return gulp.src('./src/sass/*.scss')
+	return gulp.src('./sass/*.scss')
 		.pipe(sass())
 		.pipe(gulp.dest('./static/styles'));
 });
