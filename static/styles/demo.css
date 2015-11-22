@@ -17,7 +17,7 @@ body {
   color: white;
   position: relative;
   font-weight: 300;
-  background: #303030 url("../images/large_leather.png");
+  background: #303030;
   position: relative;
   overflow: hidden; }
 
@@ -63,6 +63,9 @@ button#maximize {
   display: flex;
   justify-content: space-between;
   align-items: center; }
+  .song-info small {
+    margin-right: auto;
+    margin-left: 10px; }
 
 /* ------------------------- */
 * {

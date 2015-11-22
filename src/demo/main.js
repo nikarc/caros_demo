@@ -156,13 +156,27 @@ app.controller('Music', ['$scope', '$filter', '$timeout', '$http', 'MusicService
   };
 
   // handle song click
-  $scope.playSong = function (song, album) {
-    var songlist = $scope.songs;
+  $scope.playSong = function (song, songlist, album) {
+    if (!songlist) {
+      songlist = $scope.songs;
+    }
 
-    if (album) {
-      MusicService.playSong(song, album, $scope.currentArtist);
+    if (!$scope.currentArtist.artist) {
+      $scope.artists.forEach((ar) => {
+        if (ar._id === song.artist) {
+          $scope.currentArtist.artist = ar;
+        }
+      });
+    }
+
+    if (typeof album === 'number') {
+      $scope.albums.forEach((al) => {
+        if (al._id === album) {
+          MusicService.playSong(song, songlist, $scope.currentArtist, al);
+        }
+      });
     } else {
-      MusicService.playSong(song, songlist, $scope.currentArtist);
+      MusicService.playSong(song, songlist, $scope.currentArtist, album);
     }
   };
 
@@ -320,15 +334,14 @@ app.factory('MusicService', function () {
     getDuration: function getDuration() {
       return this.duration;
     },
-    playSong: function playSong(song, songlist, currentArtist) {
-      if (songlist) {
-        console.log(songlist);
-        this.songlist = songlist.songs;
-      }
+    playSong: function playSong(song, songlist, currentArtist, currentAlbum) {
+
+      this.songlist = songlist.songs;
 
       this.currentSong = song;
-
-      if (songlist && songlist.image) {
+      if (currentAlbum) {
+        this.currentAlbum = currentAlbum;
+      } else if (songlist && songlist.image) {
         this.currentAlbum = songlist;
       }
 
@@ -366,6 +379,7 @@ app.factory('MusicService', function () {
           var song = that.songlist[index];
 
           that.currentSong = song;
+          // that.currentArtist = song.artist;
           that.player.src = song.path;
           that.player.play();
         }
