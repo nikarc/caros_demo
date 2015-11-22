@@ -10,9 +10,9 @@ body {
   left: 50%;
   transform: translate(-50%);
   width: 800px;
-  height: 480px;
+  height: 502px;
   border: 1px solid #d0d0d0;
-  border-radius: 3px;
+  border-radius: 5px;
   box-shadow: 4px 4px 8px 2px rgba(0, 0, 0, 0.5);
   color: white;
   position: relative;
@@ -24,7 +24,9 @@ body {
 #window-menu-bar {
   width: 100%;
   background-color: #d0d0d0;
-  padding: 2px 5px; }
+  padding: 2px 5px;
+  position: relative;
+  z-index: 100; }
   #window-menu-bar button {
     border-radius: 50%;
     color: #303030;
@@ -111,7 +113,7 @@ ul {
   display: inline-block; }
 
 #content {
-  height: 100%; }
+  height: calc(100% - 25px); }
   #content .clock {
     font-size: 1.2em;
     margin-bottom: 50px; }
@@ -138,11 +140,11 @@ ul {
 
 .window {
   position: absolute;
-  top: 0;
+  top: 25px;
   left: 0;
   background-color: #0c0c0c;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 25px);
   animation-name: slidein;
   animation-duration: 0.2s; }
 

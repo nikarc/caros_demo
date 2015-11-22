@@ -11,9 +11,9 @@ body {
   left: 50%;
   transform: translate(-50%);
   width: 800px;
-  height: 480px;
+  height: 502px;
   border: 1px solid rgb(208, 208, 208);
-  border-radius: 3px;
+  border-radius: 5px;
   box-shadow: 4px 4px 8px 2px rgba(black, 0.5);
   color: white;
   position: relative;
@@ -27,6 +27,8 @@ body {
   width: 100%;
   background-color: rgb(208, 208, 208);
   padding: 2px 5px;
+  position: relative;
+  z-index: 100;
 
   button {
     border-radius: 50%;
@@ -154,7 +156,7 @@ ul {
 }
 
 #content {
-  height: 100%;
+  height: calc(100% - 25px);
 
   .clock {
     font-size: 1.2em;
@@ -189,11 +191,11 @@ ul {
 
 .window {
   position: absolute;
-  top: 0;
+  top: 25px;
   left: 0;
   background-color: darken($darkgray, 10%);
   width: 100%;
-  height: 100%;
+  height: calc(100% - 25px);
   animation-name: slidein;
   animation-duration: 0.2s;
 }
