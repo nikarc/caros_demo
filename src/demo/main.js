@@ -4,7 +4,7 @@ var musicScroller;
 
 var app = angular.module('CarOS', []);
 
-app.controller('MainController', function ($scope, $interval) {
+app.controller('MainController', ['$scope', '$interval', function ($scope, $interval) {
   $scope.mainwindow = 'main-menu';
   $scope.windowStack = ['main-menu'];
   $scope.time = moment().format('h:mm a');
@@ -27,15 +27,17 @@ app.controller('MainController', function ($scope, $interval) {
   $scope.navigate = function (context) {
     $scope.mainwindow = context;
   };
-});
+}]);
 
-app.controller('MainMenu', function ($scope) {});
+app.controller('MainMenu', ['$scope', function($scope) {
+
+}]);
 
 /***************
   Music Controller
 ***************/
 
-app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService) {
+app.controller('Music', ['$scope', '$filter', '$timeout', '$http', 'MusicService', function ($scope, $filter, $timeout, $http, MusicService) {
   $scope.songs = [];
   $scope.artists = [];
   $scope.albums = [];
@@ -155,7 +157,7 @@ app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService
 
   // handle song click
   $scope.playSong = function (song, album) {
-    var songlist = $scope.songs.sort();
+    var songlist = $scope.songs;
 
     if (album) {
       MusicService.playSong(song, album, $scope.currentArtist);
@@ -178,25 +180,25 @@ app.controller('Music', function ($scope, $filter, $timeout, $http, MusicService
     }
     $scope.songlist = angular.copy(list);
   }, true);
-});
+}]);
 
 /***************
   Settings Ctrl
 ***************/
 
-app.controller('Settings', function ($scope) {
+app.controller('Settings', ['$scope', function ($scope) {
   $scope.settings = {};
 
   $scope.refreshMusic = function () {
     // fake refresh
   };
-});
+}]);
 
 /***************
   Player Ctrl
 ***************/
 
-app.controller('Player', function ($scope, $interval, MusicService) {
+app.controller('Player', ['$scope', '$interval', 'MusicService', function ($scope, $interval, MusicService) {
   var songlist = MusicService.songlist;
   var player = undefined,
       timer = undefined;
@@ -299,7 +301,7 @@ app.controller('Player', function ($scope, $interval, MusicService) {
   $scope.prevSong = function () {
     MusicService.prevSong($scope.currentSong.number);
   };
-});
+}]);
 
 /***************
   Music Service
@@ -319,14 +321,9 @@ app.factory('MusicService', function () {
       return this.duration;
     },
     playSong: function playSong(song, songlist, currentArtist) {
-      // WARN: if no songlist, player does not show
       if (songlist) {
-        var newsonglist = songlist.songs.sort(function (a, b) {
-          return a.number - b.number;
-        });
-
-        songlist.songs = newsonglist;
-        this.songlist = newsonglist;
+        console.log(songlist);
+        this.songlist = songlist.songs;
       }
 
       this.currentSong = song;
@@ -338,7 +335,7 @@ app.factory('MusicService', function () {
       if (currentArtist) this.currentArtist = currentArtist;
 
       this.addEvent();
-      this.play(song.path);
+      this.play(song.path.replace(/\#/ig, '%23'));
       this.playing = true;
     },
     getCurrentTime: function getCurrentTime() {

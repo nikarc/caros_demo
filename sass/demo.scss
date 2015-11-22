@@ -61,6 +61,24 @@ button {
   }
 }
 
+.details {
+  width: 10%;
+  text-align: right;
+
+  svg {
+    width: 12px;
+    height: 12px;
+    fill: white;
+    margin-right: 5px;
+  }
+}
+
+.song-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 
 
 /* ------------------------- */
@@ -120,7 +138,7 @@ ul {
     align-items: center;
 
     img {
-      height: 70vh;
+      height: 100%;
     }
   }
 
@@ -191,7 +209,7 @@ $smallPlayerHeight: 40px;
   width: 100%;
   background-color: rgb(37, 37, 37);
   position: absolute;
-  bottom: -100vh;
+  bottom: -480px;
   left: 0;
   transition: all 0.2s;
 
@@ -305,8 +323,8 @@ $smallPlayerHeight: 40px;
 
 #large-player {
   position: relative;
-  height: 100vh;
-  width: 100vw;
+  height: 480px;
+  width: 800px;
   padding: 25px 0 0 0;
   overflow: hidden;
 

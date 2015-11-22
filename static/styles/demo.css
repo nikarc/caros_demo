@@ -50,6 +50,20 @@ button#maximize {
   background-color: #47d084;
   border-color: #29a15f; }
 
+.details {
+  width: 10%;
+  text-align: right; }
+  .details svg {
+    width: 12px;
+    height: 12px;
+    fill: white;
+    margin-right: 5px; }
+
+.song-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; }
+
 /* ------------------------- */
 * {
   margin: 0;
@@ -87,7 +101,7 @@ ul {
   justify-content: center;
   align-items: center; }
   .album-art.large img {
-    width: 50%; }
+    height: 100%; }
 
 .album-art.small {
   width: 124px;
@@ -221,7 +235,7 @@ ul {
 #large-player {
   position: relative;
   height: 480px;
-  width: 100%;
+  width: 800px;
   padding: 25px 0 0 0;
   overflow: hidden; }
   #large-player .background-image {

@@ -6,6 +6,7 @@ var gulp = require('gulp'),
 		browserify = require('browserify'),
 		source = require('vinyl-source-stream'),
 		buffer = require('vinyl-buffer'),
+		sourcemaps = require('gulp-sourcemaps'),
 		babelify = require('babelify');
 
 gulp.task('demo-babel', function() {
@@ -15,6 +16,10 @@ gulp.task('demo-babel', function() {
 	dbBundler.bundle()
 		.on('error', function(err) { console.log(err); })
 		.pipe(source('database.js'))
+		.pipe(buffer())
+		.pipe(sourcemaps.init({ loadMaps: true }))
+		.pipe(uglify({ mangle: false }))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./static/scripts'));
 
 	var mainBundler = browserify('src/demo/main.js');
@@ -23,6 +28,10 @@ gulp.task('demo-babel', function() {
 	mainBundler.bundle()
 		.on('error', function(err) { console.log(err); })
 		.pipe(source('main.js'))
+		.pipe(buffer())
+		.pipe(sourcemaps.init({ loadMaps: true }))
+		.pipe(uglify({ mangle: false }))
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('./static/scripts'));
 });
 
@@ -41,5 +50,5 @@ gulp.task('sass', function() {
 gulp.task('watch', ['demo-babel', 'server-babel', 'sass'], function() {
 	gulp.watch('./src/demo/*.js', ['demo-babel']);
 	gulp.watch('./src/server/server.js', ['server-babel']);
-	gulp.watch('./src/sass/*.scss', ['sass']);
+	gulp.watch('./sass/*.scss', ['sass']);
 });
