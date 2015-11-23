@@ -35,7 +35,8 @@ ol li {
   text-align: center;
   border-radius: 5px;
   padding: 10px 0;
-  margin-top: 24px; }
+  margin-top: 24px;
+  transition: all 0.3s; }
   .button a {
     color: gray;
     font-weight: 400; }
@@ -82,6 +83,23 @@ nav {
 #how {
   background-color: #8c8c8c;
   color: white; }
+
+#how-presentation {
+  overflow: hidden; }
+
+@media screen and (min-width: 1200px) {
+  #how h1 {
+    margin-bottom: 5%; }
+  #how ul {
+    list-style: none;
+    font-size: 1.2em;
+    font-weight: 400; }
+    #how ul li {
+      margin-bottom: 10%; }
+      #how ul li.shown {
+        color: green; }
+      #how ul li:nth-child(even) {
+        text-align: right; } }
 
 @media screen and (max-width: 375px) and (orientation: portrait) {
   .non-mobile {

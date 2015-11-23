@@ -48,17 +48,23 @@
         <h1 class="title">How It Works</h1>
       </div>
     </div>
-    <div class="row">
+    <div class="row" id="how-presentation">
       <div class="small-8 small-offset-2">
         <ul>
-          <li>On first startup, it scans a chosen directory for mp3’s and grabs the id3 data with an id3-parser.</li>
-          <li>If there’s album art, it creates a jpg image and saves it.</li>
-          <li>Then it saves all the song information to a local database.</li>
-          <li>That's it! Start enjoying your music in your car!</li>
+          <li data--100-bottom="transform:translateX(-150%);" data--300-bottom="transform:translateX(0);">On first startup, it scans a chosen directory for mp3’s and grabs the id3 data with an id3-parser.</li>
+          <li data--100-bottom="transform:translateX(150%);" data--300-bottom="transform:translateX(0);">If there’s album art, it creates a jpg image and saves it.</li>
+          <li data--100-bottom="transform:translateX(-150%);" data--300-bottom="transform:translateX(0);">Then it saves all the song information to a local database.</li>
+          <li data--100-bottom="transform:translateX(150%);" data--300-bottom="transform:translateX(0);">That's it! Start enjoying your music in your car!</li>
         </ul>
       </div>
     </div>
   </div>
 
+  <script src="bower/skrollr/dist/skrollr.min.js" charset="utf-8"></script>
+  <script type="text/javascript">
+    if (screen && screen.width > 660) {
+      var s = skrollr.init();
+    }
+  </script>
 </body>
 </html>

@@ -46,6 +46,7 @@ ol li {
   border-radius: 5px;
   padding: 10px 0;
   margin-top: 24px;
+  transition: all 0.3s;
 
   a {
     color: lighten(black, 50%);
@@ -112,8 +113,44 @@ nav {
   color: white;
 }
 
+#how-presentation {
+  overflow: hidden;
+}
 
+// mid to large screens
+@media screen and (min-width: 1200px) {
+  #how {
 
+    h1 {
+      margin-bottom: 5%;
+    }
+
+    ul {
+      list-style: none;
+      font-size: 1.2em;
+      font-weight: 400;
+
+      li {
+        margin-bottom: 10%;
+
+        &.shown {
+          color: green;
+        }
+
+        &:nth-child(odd) {
+          // transform: translateX(-150%);
+        }
+
+        &:nth-child(even) {
+          text-align: right;
+          // transform: translateX(150%);
+        }
+      }
+    }
+  }
+}
+
+// phones
 @media screen and (max-width: 375px) and (orientation: portrait) {
   .non-mobile {
     display: none;
