@@ -1,0 +1,27 @@
+{
+  "name": "caros",
+  "description": "Carputer front end",
+  "main": "server.js",
+  "authors": [
+    "Nick Arcuri"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/nikarc/caros_demo",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "moment": "~2.10.6",
+    "ftscroller": "~0.6.2",
+    "angular": "1.4.7"
+  }
+}

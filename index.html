@@ -2,21 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>CarOS</title>
-  <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="static/styles/foundation.min.css">
   <link rel="stylesheet" href="static/styles/main.css">
 </head>
 <body>
-  <nav>
-    <h1>CarOS</h1>
+  <nav class="non-mobile">
+    <div class="logo"><h1><a href="/">CarOS</a></h1></div>
   </nav>
 
   <div id="splash">
-    <div id="picture"><h1>Picture Goes Here</h1></div>
+    <div class="row mobile-only">
+      <div class="small-12 columns">
+        <h1 class="logo"><a href="/">CarOS</a></h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 columns" id="picture">
+        <a href="/demo" title="View Demo">
+          <img src="static/images/screenshot.jpg" alt="CarOS Screenshot">
+        </a>
+      </div>
+    </div>
   </div>
 
   <div id="about">
-    <p>about goes here</p>
+    <div class="row">
+      <div class="small-12 columns">
+        <h1 class="title">What is it?</h1>
+        <p>CarOS is a front end application designed to control a <a href="https://en.wikipedia.org/wiki/Carputer">carputer</a>. CarOS is targeted for Raspbian and the Raspberry Pi, however, it is built using <a href="https://electron.io">Electron</a> which allows some degree of portability between all the major OS's.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-12 large-2 large-offset-5 columns button">
+        <a href="/demo">Try It Out!</a>
+      </div>
+    </div>
   </div>
+
+  <div id="how">
+    <div class="row">
+      <div class="small-12 columns">
+        <h1 class="title">How It Works</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="small-8 small-offset-2">
+        <ul>
+          <li>On first startup, it scans a chosen directory for mp3’s and grabs the id3 data with an id3-parser.</li>
+          <li>If there’s album art, it creates a jpg image and saves it.</li>
+          <li>Then it saves all the song information to a local database.</li>
+          <li>That's it! Start enjoying your music in your car!</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
