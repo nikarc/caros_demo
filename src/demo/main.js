@@ -77,24 +77,7 @@ app.controller('Music', ['$scope', '$filter', '$timeout', '$http', 'MusicService
     $scope.currentArtist = { artist: null, albums: [], songs: [] };
     $scope.currentAlbum = {};
 
-    $scope.updateScroller(index);
   };
-
-  $scope.updateScroller = function (index) {
-    var list = $('.list-view')[index];
-
-    musicScroller.scrollTo(0, 0, 0);
-    $timeout(function () {
-      musicScroller.updateDimensions($(list).outerWidth(), $(list).outerHeight() + 25);
-    }, 100);
-  };
-
-
-  // get_songs(function (files) {
-  //   $scope.songs = angular.copy(files.songs);
-  //   $scope.artists = angular.copy(files.artists);
-  //   $scope.albums = angular.copy(files.albums);
-  // });
 
   // artist views
   $scope.showAlbums = function (artist, index) {
@@ -119,8 +102,6 @@ app.controller('Music', ['$scope', '$filter', '$timeout', '$http', 'MusicService
         }
       });
     });
-
-    $scope.updateScroller(index);
   };
 
   $scope.showSongs = function (album, index) {
@@ -140,8 +121,6 @@ app.controller('Music', ['$scope', '$filter', '$timeout', '$http', 'MusicService
         }
       });
     });
-
-    $scope.updateScroller(index);
   };
 
   $scope.getArtist = function (artist) {
@@ -426,13 +405,13 @@ app.filter('timecode', function () {
 });
 
 // ftscroller
-{
-  var scrollable = document.getElementById('music-content');
-  musicScroller = new FTScroller(scrollable, {
-    scrollbars: false,
-    scrollingX: false
-  });
-}
+// {
+//   var scrollable = document.getElementById('music-content');
+//   musicScroller = new FTScroller(scrollable, {
+//     scrollbars: false,
+//     scrollingX: false
+//   });
+// }
 
 
 let dropData = function() {

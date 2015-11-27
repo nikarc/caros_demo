@@ -208,7 +208,7 @@ ul {
   left: 0;
   background-color: darken($darkgray, 10%);
   width: 100%;
-  height: calc(100% - 25px);
+  height: 100%;
   animation-name: slidein;
   animation-duration: 0.2s;
 }
@@ -558,8 +558,8 @@ $smallPlayerHeight: 40px;
 .window-content {
   float: left;
   width: 80%;
-  height: 100vh;
-  overflow: hidden;
+  height: 100%;
+  overflow-y: scroll;
 }
 
 #bottom-bar {
@@ -636,10 +636,6 @@ $smallPlayerHeight: 40px;
   &:active {
     background-color: $blue;
   }
-}
-
-#music-list {
-  overflow: auto;
 }
 
 .list-view {

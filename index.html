@@ -13,7 +13,7 @@
     <div class="logo"><h1><a href="/">CarOS</a></h1></div>
   </nav>
 
-  <div id="splash">
+  <section id="splash">
     <div class="row mobile-only">
       <div class="small-12 columns">
         <h1 class="logo"><a href="/">CarOS</a></h1>
@@ -26,23 +26,26 @@
         </a>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div id="about">
-    <div class="row">
-      <div class="small-12 columns">
-        <h1 class="title">What is it?</h1>
-        <p>CarOS is a front end application designed to control a <a href="https://en.wikipedia.org/wiki/Carputer">carputer</a>. CarOS is targeted for Raspbian and the Raspberry Pi, however, it is built using <a href="https://electron.io">Electron</a> which allows some degree of portability between all the major OS's.</p>
+  <section id="about">
+    <div class="background-image"><img src="static/images/concert.jpg" alt="concert"></div>
+    <div class="foreground">
+      <div class="row">
+        <div class="small-12 columns">
+          <h1 class="title">What is it?</h1>
+          <p>CarOS is a front end application designed to control a <a href="https://en.wikipedia.org/wiki/Carputer">carputer</a>. CarOS is targeted for Raspbian and the Raspberry Pi, however, it is built using <a href="https://electron.io">Electron</a> which allows some degree of portability between all the major OS's.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="small-12 large-2 large-offset-5 columns button">
+          <a href="/demo">Try It Out!</a>
+        </div>
       </div>
     </div>
-    <div class="row">
-      <div class="small-12 large-2 large-offset-5 columns button">
-        <a href="/demo">Try It Out!</a>
-      </div>
-    </div>
-  </div>
+  </section>
 
-  <div id="how">
+  <section id="how">
     <div class="row">
       <div class="small-12 columns">
         <h1 class="title">How It Works</h1>
@@ -51,14 +54,14 @@
     <div class="row" id="how-presentation">
       <div class="small-8 small-offset-2">
         <ul>
-          <li data--100-bottom="transform:translateX(-150%);" data--300-bottom="transform:translateX(0);">On first startup, it scans a chosen directory for mp3’s and grabs the id3 data with an id3-parser.</li>
-          <li data--100-bottom="transform:translateX(150%);" data--300-bottom="transform:translateX(0);">If there’s album art, it creates a jpg image and saves it.</li>
-          <li data--100-bottom="transform:translateX(-150%);" data--300-bottom="transform:translateX(0);">Then it saves all the song information to a local database.</li>
-          <li data--100-bottom="transform:translateX(150%);" data--300-bottom="transform:translateX(0);">That's it! Start enjoying your music in your car!</li>
+          <li class="slide-in-info" data--100-bottom="transform:translateX(-150%);" data--300-bottom="transform:translateX(0);"><span class="how-icon"><img src="static/images/scan-files.png" alt="scan files"></span><p>On first startup, it scans a chosen directory for mp3’s and grabs the id3 data with an id3-parser.</p></li>
+          <li class="slide-in-info" data--100-bottom="transform:translateX(150%);" data--300-bottom="transform:translateX(0);"><span class="how-icon"><img src="static/images/download-image.png" alt="download image"></span><p>If there’s album art, it creates a jpg image and saves.</p></li>
+          <li class="slide-in-info" data--100-bottom="transform:translateX(-150%);" data--300-bottom="transform:translateX(0);"><span class="how-icon"><img src="static/images/download-song.png" alt="download song"></span><p>Then it saves all the song information to a local database.</p></li>
+          <li class="slide-in-info" data--100-bottom="transform:translateX(150%);" data--300-bottom="transform:translateX(0);"><span class="how-icon"><img src="static/images/speaker.png" alt="listen"></span><p>That's it! Start enjoying your music in your car!</p></li>
         </ul>
       </div>
     </div>
-  </div>
+  </section>
 
   <script src="bower/skrollr/dist/skrollr.min.js" charset="utf-8"></script>
   <script type="text/javascript">
