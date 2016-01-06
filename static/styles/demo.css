@@ -188,6 +188,8 @@ ul {
     #player .background-image img {
       width: 100%;
       -webkit-filter: blur(20px);
+      -moz-filter: blur(20px);
+      filter: blur(20px);
       position: absolute;
       top: 50%;
       left: 50%;
@@ -262,6 +264,8 @@ ul {
     #large-player .background-image img {
       width: 100%;
       -webkit-filter: blur(20px);
+      -moz-filter: blur(20px);
+      filter: blur(20px);
       transform: none;
       top: 0;
       left: 0; }

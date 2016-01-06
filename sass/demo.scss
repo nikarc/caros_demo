@@ -109,6 +109,8 @@ $red: #CF155B;
 
 @mixin blur {
   -webkit-filter: blur(20px);
+  -moz-filter: blur(20px);
+  filter: blur(20px);
 }
 
 * {

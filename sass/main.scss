@@ -1,4 +1,11 @@
 $blue: #76d0eb;
+$red: #CF155B;
+
+@mixin blur($rad) {
+  filter: blur($rad);
+  -webkit-filter: blur($rad);
+  -moz-filter: blur($rad);
+}
 
 * {
   margin: 0;
@@ -18,12 +25,13 @@ body {
 }
 
 section:not(#splash) {
-  padding: 8% 0;
+  padding: 8% 2em;
 }
 
 a {
   text-decoration: none;
-  color: darken($blue, 50%);
+  color: $red;
+  font-weight: 700;
 
   &:hover {
     color: $blue;
@@ -42,29 +50,6 @@ ol li {
   display: none;
 }
 
-.background-image {
-  position: absolute;
-  top: -50%;
-  left: -5%;
-  z-index: 2;
-  width: 110%;
-
-  img {
-    width: 100%;
-    filter: blur(40px);
-    -webkit-filter: blur(40px);
-    -moz-filter: blur(40px);
-  }
-}
-
-.foreground {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
-  z-index: 3;
-}
-
 .title {
   text-align: center;
   display: block;
@@ -72,51 +57,21 @@ ol li {
 }
 
 .button {
-  border: 2px solid lighten(black, 50%);
-  text-align: center;
+  background-color: $blue;
+  color: white;
   border-radius: 5px;
-  padding: 10px 0;
-  margin-top: 24px;
-  transition: all 0.3s;
-  position: relative;
-  z-index: 2;
-
-  a {
-    color: lighten(black, 50%);
-    font-weight: 400;
-  }
-
-  &:active {
-    background-color: $blue;
-    color: white;
-  }
+  padding: 1em 2em;
+  display: block;
+  text-align: center;
+  margin-top: 2em;
+  border: 2px solid darken($blue, 15%);
+  transition: all 0.2s;
 
   &:hover {
-    background-color: $blue;
-    border-color: darken($blue, 15%);
-    cursor: pointer;
-
-    & a {
-      color: white;
-    }
-
-    &::after {
-      opacity: 1;
-    }
-  }
-
-  &::after {
-    opacity: 0;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    box-shadow: 4px 4px 8px 2px rgba(black, 0.5);
-    transition: all 0.3s;
-    border-radius: 5px;
-    z-index: 1;
+    background-color: darken($blue, 15%);
+    color: white;
+    box-shadow: 4px 4px 6px 0 rgba(black, 0.5);
+    transform: translateY(-4px);
   }
 }
 
@@ -158,12 +113,10 @@ nav {
 #about {
   position: relative;
   overflow: hidden;
-  height: 100vh;
-  color: white;
 }
 
 #how {
-  background-color: rgb(140, 140, 140);
+  background-color: rgb(29, 86, 113);
   color: white;
 }
 
@@ -175,7 +128,7 @@ nav {
   }
 }
 
-.slide-in-info {
+.how-info {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -199,11 +152,6 @@ nav {
       font-weight: 400;
 
       li {
-        margin-bottom: 10%;
-
-        &.shown {
-          color: green;
-        }
 
         &:nth-child(even) {
           text-align: right;

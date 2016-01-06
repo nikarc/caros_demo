@@ -13,11 +13,12 @@ body {
   position: relative; }
 
 section:not(#splash) {
-  padding: 8% 0; }
+  padding: 8% 2em; }
 
 a {
   text-decoration: none;
-  color: #0c4556; }
+  color: #CF155B;
+  font-weight: 700; }
   a:hover {
     color: #76d0eb; }
 
@@ -30,65 +31,26 @@ ol li {
 .mobile-only {
   display: none; }
 
-.background-image {
-  position: absolute;
-  top: -50%;
-  left: -5%;
-  z-index: 2;
-  width: 110%; }
-  .background-image img {
-    width: 100%;
-    filter: blur(40px);
-    -webkit-filter: blur(40px);
-    -moz-filter: blur(40px); }
-
-.foreground {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%);
-  z-index: 3; }
-
 .title {
   text-align: center;
   display: block;
   margin: 24px auto; }
 
 .button {
-  border: 2px solid gray;
-  text-align: center;
+  background-color: #76d0eb;
+  color: white;
   border-radius: 5px;
-  padding: 10px 0;
-  margin-top: 24px;
-  transition: all 0.3s;
-  position: relative;
-  z-index: 2; }
-  .button a {
-    color: gray;
-    font-weight: 400; }
-  .button:active {
-    background-color: #76d0eb;
-    color: white; }
+  padding: 1em 2em;
+  display: block;
+  text-align: center;
+  margin-top: 2em;
+  border: 2px solid #33b9e1;
+  transition: all 0.2s; }
   .button:hover {
-    background-color: #76d0eb;
-    border-color: #33b9e1;
-    cursor: pointer; }
-    .button:hover a {
-      color: white; }
-    .button:hover::after {
-      opacity: 1; }
-  .button::after {
-    opacity: 0;
-    content: "";
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    box-shadow: 4px 4px 8px 2px rgba(0, 0, 0, 0.5);
-    transition: all 0.3s;
-    border-radius: 5px;
-    z-index: 1; }
+    background-color: #33b9e1;
+    color: white;
+    box-shadow: 4px 4px 6px 0 rgba(0, 0, 0, 0.5);
+    transform: translateY(-4px); }
 
 nav {
   position: absolute;
@@ -119,12 +81,10 @@ nav {
 
 #about {
   position: relative;
-  overflow: hidden;
-  height: 100vh;
-  color: white; }
+  overflow: hidden; }
 
 #how {
-  background-color: #8c8c8c;
+  background-color: #1d5671;
   color: white; }
 
 #how-presentation {
@@ -132,11 +92,11 @@ nav {
   #how-presentation .how-icon {
     margin: 0 18px; }
 
-.slide-in-info {
+.how-info {
   display: flex;
   justify-content: center;
   align-items: center; }
-  .slide-in-info:nth-child(even) {
+  .how-info:nth-child(even) {
     flex-direction: row-reverse; }
 
 @media screen and (min-width: 1200px) {
@@ -146,12 +106,8 @@ nav {
     list-style: none;
     font-size: 1.2em;
     font-weight: 400; }
-    #how ul li {
-      margin-bottom: 10%; }
-      #how ul li.shown {
-        color: green; }
-      #how ul li:nth-child(even) {
-        text-align: right; } }
+    #how ul li:nth-child(even) {
+      text-align: right; } }
 
 @media screen and (max-width: 375px) and (orientation: portrait) {
   .non-mobile {

@@ -136,7 +136,7 @@ app.controller('Music', ['$scope', '$filter', '$timeout', '$http', 'MusicService
 
   // handle song click
   $scope.playSong = function (song, songlist, album) {
-    if (!songlist) {
+      if (!songlist) {
       songlist = $scope.songs;
     }
 
